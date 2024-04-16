@@ -48,28 +48,28 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [x] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [x] Commit: `Create Subscriber model struct.`
+    -   [x] Commit: `Create Notification model struct.`
+    -   [x] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [x] Commit: `Implement add function in Subscriber repository.`
+    -   [x] Commit: `Implement list_all function in Subscriber repository.`
+    -   [x] Commit: `Implement delete function in Subscriber repository.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Commit: `Create Notification service struct skeleton.`
+    -   [x] Commit: `Implement subscribe function in Notification service.`
+    -   [x] Commit: `Implement subscribe function in Notification controller.`
+    -   [x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
-    -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
-    -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
-    -   [ ] Commit: `Implement publish function in Program service and Program controller.`
-    -   [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
+    -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
+    -   [x] Commit: `Implement publish function in Program service and Program controller.`
+    -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -79,11 +79,7 @@ This is the place for you to write reflections:
 #### Reflection Publisher-1
 1. Jika BambangShop memiliki beberapa jenis subscriber, misalnya subscriber email, subscriber SMS atau subscriber notifikasi push, penggunaan _interface_ atau _trait_ akan bermanfaat. Ini memungkinkan _programmer_ memiliki implementasi subscriber konkret yang berbeda sambil memastikan bahwa semuanya mematuhi kontrak yang sama. Namun, jika BambangShop hanya memiliki satu jenis subscriber dan tidak mengantisipasi memiliki jenis lain di masa depan, penggunaan sebuah _struct_ tunggal sudah cukup. Dalam hal ini, _programmer_ akan mendefinisikan _field_ dan metode yang diperlukan langsung dalam _struct_ Model tanpa memerlukan _interface_ atau _trait_ seperti yang sudah dilakukan pada tutorial ini.
 
-2. Menggunakan Vec (daftar) mungkin sudah cukup jika jumlah Subscriber tidak terlalu besar dan _programmer_ hanya perlu mencari berdasarkan _id_ atau _url_ yang unik. Namun, jika program diharapkan memiliki kinerja yang lebih baik dalam mencari, memperbarui, atau menghapus Subscriber berdasarkan _id_ atau _url_, penggunaan DashMap seperti yang sudah gunakan saat ini lebih diperlukan.
-
-DashMap akan memberikan kinerja yang lebih baik dalam operasi-operasi tersebut karena ia memungkinkan akses paralel dan tidak memerlukan penguncian seluruh struktur data saat mengaksesnya. Ini penting terutama jika kita mengharapkan jumlah Subscriber yang besar atau aplikasi akan berjalan di lingkungan yang bersifat konkuren.
-
-Jadi, jika kita membutuhkan kinerja yang lebih baik dalam mengelola dan mengakses data Subscriber, menggunakan DashMap bisa menjadi pilihan yang lebih baik.
+2. Menggunakan Vec (daftar) mungkin sudah cukup jika jumlah Subscriber tidak terlalu besar dan _programmer_ hanya perlu mencari berdasarkan _id_ atau _url_ yang unik. Namun, jika program diharapkan memiliki kinerja yang lebih baik dalam mencari, memperbarui, atau menghapus Subscriber berdasarkan _id_ atau _url_, penggunaan DashMap seperti yang sudah gunakan saat ini lebih diperlukan. DashMap akan memberikan kinerja yang lebih baik dalam operasi-operasi tersebut karena ia memungkinkan akses paralel dan tidak memerlukan penguncian seluruh struktur data saat mengaksesnya. Ini penting terutama jika kita mengharapkan jumlah Subscriber yang besar atau aplikasi akan berjalan di lingkungan yang bersifat konkuren. Jadi, jika kita membutuhkan kinerja yang lebih baik dalam mengelola dan mengakses data Subscriber, menggunakan DashMap bisa menjadi pilihan yang lebih baik.
 
 3. Dalam pola desain _Singleton_, tujuan utamanya adalah untuk memastikan bahwa suatu kelas hanya memiliki satu _instance_ dan menyediakan cara global untuk mengakses _instance_ tersebut. Namun, penggunaan pola _Singleton_ saja tidak cukup untuk memastikan keamanan _thread_. Meskipun _Singleton_ dapat memastikan bahwa hanya ada satu _instance_ dari struktur data, hal itu tidak menjamin keamanan operasi pada struktur data tersebut ketika digunakan dalam lingkungan _threading_. Oleh karena itu, menggunakan DashMap atau struktur data yang aman untuk _threading_ tetap diperlukan.
 
@@ -104,6 +100,14 @@ Jadi, jika kita membutuhkan kinerja yang lebih baik dalam mengelola dan mengakse
     - **Kolaborasi Tim**: Fitur Tim di Postman memungkinkan anggota tim untuk bekerja sama dalam pengembangan dan pengujian API. Saya dapat berbagi koleksi, lingkungan, dan skenario pengujian dengan rekan tim, serta memberikan komentar dan umpan balik langsung dalam aplikasi.
 
 #### Reflection Publisher-3
-1. 
-2. 
-3. 
+1. Dalam kasus tutorial ini, kita menggunakan varian model "Push" dari pola Observer. Dalam model "Push", _publisher_ aktif mengirimkan pembaruan atau data kepada pelanggan tanpa diminta oleh pelanggan. Dalam konteks aplikasi kita, ketika ada notifikasi baru, sistem secara aktif mengirim notifikasi tersebut kepada semua pelanggan yang telah berlangganan.
+2.  - **Kelebihan**
+        - **Kontrol yang lebih besar**: Dalam model "Pull", pelanggan memiliki kendali lebih besar atas kapan mereka mengambil data atau notifikasi dari _publisher_. Mereka dapat memilih waktu yang tepat untuk meminta data baru, yang dapat membantu mengurangi beban pada sistem jika pelanggan tidak perlu menerima notifikasi secara terus-menerus.
+        - **Penggunaan sumber daya yang lebih efisien**: Dengan model "Pull", pelanggan hanya mengambil data saat mereka membutuhkannya, yang dapat mengurangi penggunaan sumber daya sistem karena tidak ada pembaruan yang dikirimkan ke semua pelanggan secara aktif.
+    - **Kekurangan**
+        - **Kompleksitas tambahan**: Dalam model "Pull", pelanggan perlu mengimplementasikan logika tambahan untuk meminta dan menarik data dari _publisher_. Ini dapat meningkatkan kompleksitas kode dan memerlukan manajemen waktu dan pengaturan yang lebih rumit.
+        - **Keterlambatan dalam pembaruan**: Dalam model "Pull", pelanggan hanya akan menerima pembaruan saat mereka secara aktif meminta data dari _publisher_. Hal ini dapat menyebabkan keterlambatan dalam pembaruan jika pelanggan tidak melakukan permintaan secara teratur atau jika ada jeda waktu antara permintaan data.
+3. Jika kita tidak menggunakan _multi-threading_ ada beberapa kemungkinan yang akan terjadi,
+    -  **_Blocking Operations_**: Jika proses notifikasi dilakukan secara bersamaan dengan operasi utama dalam satu _thread_, maka operasi notifikasi yang lambat atau terblokir dapat menyebabkan aplikasi menjadi lambat atau terhenti sementara operasi utama menunggu notifikasi selesai.
+    - **Potensial untuk _Deadlock_**: Jika terdapat ketergantungan antara operasi utama dan proses notifikasi, menggunakan satu _thread_ untuk keduanya dapat meningkatkan risiko _deadlock_, di mana kedua proses saling menunggu satu sama lain untuk melepaskan sumber daya yang dibutuhkan.
+    - **Responsifitas Aplikasi yang Buruk**: Jika proses notifikasi berjalan secara bersamaan dengan operasi utama dalam satu _thread_, maka responsifitas aplikasi terhadap interaksi pengguna atau permintaan luar dapat menurun karena _thread_ utama terikat dalam proses notifikasi.
