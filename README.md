@@ -77,7 +77,19 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+Jika BambangShop memiliki beberapa jenis subscriber, misalnya subscriber email, subscriber SMS atau subscriber notifikasi push, penggunaan _interface_ atau _trait_ akan bermanfaat. Ini memungkinkan _programmer_ memiliki implementasi subscriber konkret yang berbeda sambil memastikan bahwa semuanya mematuhi kontrak yang sama.
+
+Namun, jika BambangShop hanya memiliki satu jenis subscriber dan tidak mengantisipasi memiliki jenis lain di masa depan, penggunaan sebuah _struct_ tunggal sudah cukup. Dalam hal ini, _programmer_ akan mendefinisikan _field_ dan metode yang diperlukan langsung dalam _struct_ Model tanpa memerlukan _interface_ atau _trait_ seperti yang sudah dilakukan pada tutorial ini.
 
 #### Reflection Publisher-2
 
+Menggunakan Vec (daftar) mungkin sudah cukup jika jumlah Subscriber tidak terlalu besar dan _programmer_ hanya perlu mencari berdasarkan _id_ atau _url_ yang unik. Namun, jika program diharapkan memiliki kinerja yang lebih baik dalam mencari, memperbarui, atau menghapus Subscriber berdasarkan _id_ atau _url_, penggunaan DashMap seperti yang sudah gunakan saat ini lebih diperlukan.
+
+DashMap akan memberikan kinerja yang lebih baik dalam operasi-operasi tersebut karena ia memungkinkan akses paralel dan tidak memerlukan penguncian seluruh struktur data saat mengaksesnya. Ini penting terutama jika kita mengharapkan jumlah Subscriber yang besar atau aplikasi akan berjalan di lingkungan yang bersifat konkuren.
+
+Jadi, jika kita membutuhkan kinerja yang lebih baik dalam mengelola dan mengakses data Subscriber, menggunakan DashMap bisa menjadi pilihan yang lebih baik.
+
 #### Reflection Publisher-3
+Dalam pola desain _Singleton_, tujuan utamanya adalah untuk memastikan bahwa suatu kelas hanya memiliki satu _instance_ dan menyediakan cara global untuk mengakses _instance_ tersebut. Namun, penggunaan pola _Singleton_ saja tidak cukup untuk memastikan keamanan _thread_.
+
+Meskipun _Singleton_ dapat memastikan bahwa hanya ada satu _instance_ dari struktur data, hal itu tidak menjamin keamanan operasi pada struktur data tersebut ketika digunakan dalam lingkungan _threading_. Oleh karena itu, menggunakan DashMap atau struktur data yang aman untuk _threading_ tetap diperlukan.
