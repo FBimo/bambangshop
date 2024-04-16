@@ -17,7 +17,7 @@ impl SubscriberRepository {
         };
 
         SUBSCRIBERS.get(product_type).unwrap()
-        .insert(subscriber_value.url.clone(), subscriber_value);
+            .insert(subscriber_value.url.clone(), subscriber_value);
         return subscriber;
     }
 
@@ -32,7 +32,7 @@ impl SubscriberRepository {
 
     pub fn delete(product_type: &str, url: &str) -> Option<Subscriber> {
         if SUBSCRIBERS.get(product_type).is_none() {
-            SUSBCRIBERS.insert(String::from(product_type), DashMap::new());
+            SUBSCRIBERS.insert(String::from(product_type), DashMap::new());
         }
         let result = SUBSCRIBERS.get(product_type).unwrap().remove(url);
         if !result.is_none() {
