@@ -14,7 +14,7 @@ impl ProductService {
         let product_result: Product = ProductRepository::add(product);
 
         NotificationService.notify(&product_result.product_type, "CREATED", 
-            product_result.clone())
+            product_result.clone());
         return Ok(product_result);
     }
 
